@@ -1,112 +1,46 @@
-let main = document.getElementById("main")
-let filprice = document.querySelector("select")
+let api_key ="3df55a703b5b8c6b9edd3921118cbc28";
+let api ="https://api.openweathermap.org/data/2.5/weather";
+
+
+
+// ?q={buldhana}&appid=232f0bd383dc23f5ded51b0ea8ae959d&units=metric
+
 let input = document.querySelector("input")
+let main = document.querySelector("#main")
 
-let api = "https://dummyjson.com/products";
-let realData;
-
-const getData = async()=>{
- let res =   await fetch(api)
-//    console.log(await res.json())
-let data = await res.json()
-console.log(data.products)
-realData = data.products;
-display(realData)
-
-// let x =  realData.filter((el)=>{
-//      if(el.category == "beauty"){
-//         return el
-//      }else if(el.category == "fragrances"){
-//         return el
-//      }
-// })
-
-// console.log(x)
-}
+ const getData=async()=>{
+    let cityname = input.value || "buldhana";
 
 
-getData()
+    let res =await fetch(`${api}?q=${cityname}&appid=${api_key}&units=metric`);
+    
+
+    let data =await res.json()
+    // console.log(data);
+    display(data)
+    
+ }
 
 
+    getData()
+
+ function display({name,main:{temp}}){
+    // console.log(data.name);
+    // console.log(data.main.temp);
 
 
-const display = (data)=>{
-    main.innerHTML = ""
-//    console.log(data)
-data.map((el,index)=>{
-// console.log(el)
- let name = document.createElement("h2");
- name.innerText = el.title;
- let p = document.createElement("h3");
- p.innerText = el.price;
- let img = document.createElement("img");
- img.setAttribute("class", "images")
- img.src = el.images[0];
- let div = document.createElement("div");
-
- div.append(img, name, p);
- main.append(div);
-
-
-})
-}
-
-
-const filterpr =()=>{
-
-if (filprice.value == "lth"){
-     realData.sort((a, b) => {
-       return a.price - b.price;
-     });
-}else if(filprice.value == "htl"){
-     realData.sort((a, b) => {
-       return b.price - a.price;
-     });
-}
-
-
-display(realData)
-}
-
-input.addEventListener("input",()=>{
-  let x = event.target.value.toLowerCase()
-
-
-  const filtered =realData.filter((data)=>{
-    return data.title.toLowerCase().includes(x)
-  })
+    main.innerHTML=`<h1>${name}</h1>
+                    <h2>${temp}</h2>
+                     <iframe src="https://maps.google.com/maps?&hl=en&q=${name}&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                     `
 
 
 
-  display(filtered)
-  // console.log(filtered);
-  
-})
+              
 
+          
+    
+    
+ }
 
-
-
-
-
-
-
-
-// const inputdata =()=>{
-//     let input = document.querySelector("input")
-//     console.log(input.value)
-// }
-
-
-// let arr = [1,5,9,6,7,3,77,87,55,32,11]
-
-// let x =  arr.filter((el)=>{
-//      return el>50
-// })
-
-
-
-// arr.sort((a,b)=>{
-//    return b-a
-// })
-
-// console.log(arr)
+ 

@@ -1,42 +1,31 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <style>
-      #main {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-      }
-
-      #main > div {
-        text-align: center;
-        border: 2px solid;
-      }
-
-      .images {
-        width: 100%;
-      }
-
-      select,input{
-        width: 300px;
-        height: 60px;
-        font-size: 30px;
-      }
+        iframe{
+            width: 600px;
+            height: 400px;
+        }
     </style>
-  </head>
-  <body>
-    <select onchange="filterpr()">
-      <option value="">Filter By Price</option>
-      <option value="lth">Low to High</option>
-      <option value="htl">High to Low</option>
-    </select>
-
-    <input type="text" placeholder="Search...">
+</head>
+<body>
+    <h1>Weather app</h1>
+    <input type="text" id="city" placeholder="Enter your city name">
+    <button onclick="getData()">Search</button>
+    
 
     <br><br>
+
     <div id="main"></div>
-  </body>
-  <script src="index.js"></script>
+
+
+    <br/><br/>
+
+   <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/IrrfL3qcEsQ?si=VUUiVorFQaI9T917" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+
+</body>
+<script src="./index.js"></script>
 </html>
